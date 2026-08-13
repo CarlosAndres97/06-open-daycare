@@ -33,6 +33,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 ## Spec Driven Development -Skills
 - /spec Usaremos esta habilidad para crear las especificaciones.
 - /spec-impl Usaremos esta skill para hacer las implementaciones.
+- /spec-verifier Usaremos esta skill para verificar los criterios de aceptación de un spec implementado. El agente corre los checks (build/lint/runtime/visual/structure/manual) y marca los criterios aprobados con `[x]` en `## Acceptance Criteria`. **No modifica el `**Status:**` del spec** — eso lo hacés a mano.
 
 
 ## Reglas de codigo

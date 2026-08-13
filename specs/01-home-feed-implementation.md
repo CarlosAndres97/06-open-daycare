@@ -1,6 +1,6 @@
 # SPEC 01 — Home Feed Implementation
 
-**Status:** Approved
+**Status:** Implemented
 **Date:** 2026-08-13
 **Depends on:** —
 **Author:** opencode
@@ -111,17 +111,17 @@ Cada paso deja el sistema construible.
 
 ## 5. Acceptance Criteria
 
-- [ ] `npm run build` sin errores.
-- [ ] `npm run lint` sin errores.
-- [ ] `npm run dev` renderiza `/` sin warnings ni errores en consola.
-- [ ] Side-by-side a 1280px entre `/` y `referencias/pantallas/feed.dc.html`: mismas secciones, mismo orden, mismos textos, mismos colores.
-- [ ] Badges en orden: LOGRO (verde sage), ACTIVIDAD (azul sky), ANUNCIO (azul indigo).
-- [ ] Todos los links (sidebar, CTA tile, "Editar") tienen `href="#"` y no navegan ni producen 404.
-- [ ] Tipografías: computed style de `<h1>` muestra Fredoka; computed style de `<body>` muestra Nunito.
-- [ ] A < 768px: sidebar oculto, hamburguesa visible fixed; click abre drawer con sidebar completo; click en backdrop cierra.
-- [ ] Background `#F6ECDF`, cards `#FFFDF9` con borde `#ECE0D0`.
-- [ ] `app/` solo contiene rutas y configs (page.tsx, layout.tsx, globals.css) — sin data, sin components.
-- [ ] Estructura final coincide con el árbol descrito en §3.
+- [x] `npm run build` sin errores.
+- [x] `npm run lint` sin errores.
+- [x] `npm run dev` renderiza `/` sin warnings ni errores en consola.
+- [x] Side-by-side a 1280px entre `/` y `referencias/pantallas/feed.dc.html`: mismas secciones, mismo orden, mismos textos, mismos colores.
+- [x] Badges en orden: LOGRO (verde sage), ACTIVIDAD (azul sky), ANUNCIO (azul indigo).
+- [x] Todos los links (sidebar, CTA tile, "Editar") tienen `href="#"` y no navegan ni producen 404.
+- [x] Tipografías: computed style de `<h1>` muestra Fredoka; computed style de `<body>` muestra Nunito.
+- [x] A < 768px: sidebar oculto, hamburguesa visible fixed; click abre drawer con sidebar completo; click en backdrop cierra.
+- [x] Background `#F6ECDF`, cards `#FFFDF9` con borde `#ECE0D0`.
+- [x] `app/` solo contiene rutas y configs (page.tsx, layout.tsx, globals.css) — sin data, sin components.
+- [x] Estructura final coincide con el árbol descrito en §3.
 
 ## 6. Decisions Taken and Discarded
 
