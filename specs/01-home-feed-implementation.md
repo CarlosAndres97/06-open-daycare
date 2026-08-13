@@ -30,7 +30,7 @@
 
 ## 2. Data Model
 
-Estructura nueva en `app/_data/mock.ts`:
+Estructura nueva en `data/mock.ts`:
 
 ```ts
 export type PostKind = "achievement" | "activity" | "announcement";
@@ -61,29 +61,33 @@ Sin persistencia. Constantes puras, consumidas por el server component de `app/p
 ## 3. File Structure
 
 ```
+data/
+└── mock.ts                           # POSTS + tipos
+
+components/
+├── shared/                           # reutilizables (cross-page)
+│   ├── Avatar.tsx                    # círculo color + inicial/icon
+│   ├── Badge.tsx                     # pill base (punto + label)
+│   └── Icons.tsx                     # todos los SVG icons
+└── home/                             # específicos del Home (esta página)
+    ├── Sidebar.tsx                   # logo + CTA + nav + user card
+    ├── MobileDrawer.tsx              # wrapper con toggle + backdrop
+    ├── PostCard.tsx                  # post completo
+    ├── PostBadge.tsx                 # LOGRO/ACTIVIDAD/ANUNCIO (usa shared/Badge)
+    ├── FeedHeader.tsx                # eyebrow + "Buenas, Caro" + subtítulo
+    └── ComposerTile.tsx              # "Compartí un momento…"
+
 app/
-├── _data/
-│   └── mock.ts                       # POSTS + tipos
-├── _components/
-│   ├── shared/                       # reutilizables (cross-page)
-│   │   ├── Avatar.tsx                # círculo color + inicial/icon
-│   │   ├── Badge.tsx                 # pill base (punto + label)
-│   │   └── Icons.tsx                 # todos los SVG icons
-│   └── home/                         # específicos del Home (esta página)
-│       ├── Sidebar.tsx               # logo + CTA + nav + user card
-│       ├── MobileDrawer.tsx          # wrapper con toggle + backdrop
-│       ├── PostCard.tsx              # post completo
-│       ├── PostBadge.tsx             # LOGRO/ACTIVIDAD/ANUNCIO (usa shared/Badge)
-│       ├── FeedHeader.tsx            # eyebrow + "Buenas, Caro" + subtítulo
-│       └── ComposerTile.tsx          # "Compartí un momento…"
 ├── globals.css                       # tokens @theme + scrollbar
 ├── layout.tsx                        # next/font + lang="es"
-└── page.tsx                          # arma Sidebar + feed
+└── page.tsx                          # arma Sidebar + feed (única ruta)
 ```
 
 Convenciones:
-- `shared/` agrupa lo reutilizable; se importará desde futuros specs.
-- `home/` agrupa lo específico del feed; queda plano (un nivel).
+- `app/` solo contiene rutas y sus configs (globals.css, layout.tsx, page.tsx). Nada más.
+- `data/` agrupa data estática/mock consumida por las páginas.
+- `components/shared/` agrupa lo reutilizable; se importará desde futuros specs.
+- `components/home/` agrupa lo específico del feed; queda plano (un nivel).
 - `PostBadge` se queda en `home/` hasta que otra pantalla lo necesite — usa `shared/Badge` por dentro.
 
 ## 4. Implementation Plan
@@ -92,16 +96,16 @@ Cada paso deja el sistema construible.
 
 1. **Tokens en `app/globals.css`** — declarar dentro de `@theme`: colores (`cream`, `coral-500/600`, `sage-500/100`, `sky-500/100`, `indigo-500/100`, `beige-100/200/300`, `ink-900/700/500/300/200`) y familias (`--font-fredoka`, `--font-nunito`). Conservar `::-webkit-scrollbar*`.
 2. **Fonts en `app/layout.tsx`** — importar `Fredoka, Nunito` desde `next/font/google` con subsets `latin`, weights/italics requeridos, `display: 'swap'`; inyectar las `.variable` en `className` del `<body>`; agregar `lang="es"` al `<html>`.
-3. **Mock data en `app/_data/mock.ts`** — exportar tipos `Post`, `PostKind` y constante `POSTS` con 3 entradas idénticas al mock.
-4. **Icons en `app/_components/shared/Icons.tsx`** — exportar componentes React (uno por ícono) que rendericen el SVG inline del mock con `strokeLinecap="round"`, `strokeLinejoin="round"`, mismo viewBox 24×24. Color por prop `className` o `stroke`.
-5. **`Badge` en `app/_components/shared/Badge.tsx`** — pill base (punto + label uppercase); recibe `tone` (sage/sky/indigo) y `label`; mapea a `bg-{tone}-100` + `text-{tone}-700`.
-6. **`Avatar` en `app/_components/shared/Avatar.tsx`** — círculo color + inicial/icon; props: `color` (clase bg), `initial?` (texto), `children?` (slot para íconos).
-7. **`PostBadge` en `app/_components/home/PostBadge.tsx`** — recibe `kind`; usa `shared/Badge` con label "LOGRO" / "ACTIVIDAD" / "ANUNCIO" y tono correspondiente.
-8. **`PostCard` en `app/_components/home/PostCard.tsx`** — recibe `Post`; renderiza header (avatar/nombre/hora + badge), audience, body, photo placeholder opcional (`border-dashed`, `bg-beige-100`, ícono cámara), reactions bar (`♥` filled, icono comment, spacer, "Editar").
-9. **`FeedHeader` en `app/_components/home/FeedHeader.tsx`** — eyebrow, h1 "Buenas, Caro", subtítulo "12 niños · martes 17 jun".
-10. **`ComposerTile` en `app/_components/home/ComposerTile.tsx`** — fila con avatar "C", texto placeholder "Compartí un momento…", ícono cámara.
-11. **`Sidebar` en `app/_components/home/Sidebar.tsx`** — bloques: logo (gradient sun icon + "OpenDayCare" / "Sala Soles"), botón gradient "Nueva publicación", nav (`IconHome` Feed activo, `IconUsers` Niños, `IconBell` Avisos, `IconUser` Mi cuenta), user card (avatar "C" + Caro Giménez + IconLogout). Todos `href="#"`. Hidden `<768px`.
-12. **`MobileDrawer` en `app/_components/home/MobileDrawer.tsx`** — Client Component con `useState`; botón hamburguesa fixed `top-4 left-4 z-50` (visible `<768px`); al abrir renderiza `<Sidebar>` en `position: fixed inset-y-0 left-0 w-[248px]` con backdrop `bg-black/30` que cierra al click; transition `transform 200ms`.
+3. **Mock data en `data/mock.ts`** — exportar tipos `Post`, `PostKind` y constante `POSTS` con 3 entradas idénticas al mock.
+4. **Icons en `components/shared/Icons.tsx`** — exportar componentes React (uno por ícono) que rendericen el SVG inline del mock con `strokeLinecap="round"`, `strokeLinejoin="round"`, mismo viewBox 24×24. Color por prop `className` o `stroke`.
+5. **`Badge` en `components/shared/Badge.tsx`** — pill base (punto + label uppercase); recibe `tone` (sage/sky/indigo) y `label`; mapea a `bg-{tone}-100` + `text-{tone}-700`.
+6. **`Avatar` en `components/shared/Avatar.tsx`** — círculo color + inicial/icon; props: `color` (clase bg), `initial?` (texto), `children?` (slot para íconos).
+7. **`PostBadge` en `components/home/PostBadge.tsx`** — recibe `kind`; usa `shared/Badge` con label "LOGRO" / "ACTIVIDAD" / "ANUNCIO" y tono correspondiente.
+8. **`PostCard` en `components/home/PostCard.tsx`** — recibe `Post`; renderiza header (avatar/nombre/hora + badge), audience, body, photo placeholder opcional (`border-dashed`, `bg-beige-100`, ícono cámara), reactions bar (`♥` filled, icono comment, spacer, "Editar").
+9. **`FeedHeader` en `components/home/FeedHeader.tsx`** — eyebrow, h1 "Buenas, Caro", subtítulo "12 niños · martes 17 jun".
+10. **`ComposerTile` en `components/home/ComposerTile.tsx`** — fila con avatar "C", texto placeholder "Compartí un momento…", ícono cámara.
+11. **`Sidebar` en `components/home/Sidebar.tsx`** — bloques: logo (gradient sun icon + "OpenDayCare" / "Sala Soles"), botón gradient "Nueva publicación", nav (`IconHome` Feed activo, `IconUsers` Niños, `IconBell` Avisos, `IconUser` Mi cuenta), user card (avatar "C" + Caro Giménez + IconLogout). Todos `href="#"`. Hidden `<768px`.
+12. **`MobileDrawer` en `components/home/MobileDrawer.tsx`** — Client Component con `useState`; botón hamburguesa fixed `top-4 left-4 z-50` (visible `<768px`); al abrir renderiza `<Sidebar>` en `position: fixed inset-y-0 left-0 w-[248px]` con backdrop `bg-black/30` que cierra al click; transition `transform 200ms`.
 13. **`app/page.tsx`** — Server Component que monta `<MobileDrawer>` + `<main>` con `<FeedHeader>`, `<ComposerTile>`, divider "PUBLICADO HOY" y `POSTS.map(p => <PostCard key={p.id} {...p} />)`.
 14. **Lint + build + visual** — `npm run lint`, `npm run build`, abrir a 1280px y 375px en Playwright; comparar con el mock.
 
@@ -116,15 +120,15 @@ Cada paso deja el sistema construible.
 - [ ] Tipografías: computed style de `<h1>` muestra Fredoka; computed style de `<body>` muestra Nunito.
 - [ ] A < 768px: sidebar oculto, hamburguesa visible fixed; click abre drawer con sidebar completo; click en backdrop cierra.
 - [ ] Background `#F6ECDF`, cards `#FFFDF9` con borde `#ECE0D0`.
-- [ ] Los archivos `app/_data/` y `app/_components/` no aparecen como rutas navegables.
+- [ ] `app/` solo contiene rutas y configs (page.tsx, layout.tsx, globals.css) — sin data, sin components.
 - [ ] Estructura final coincide con el árbol descrito en §3.
 
 ## 6. Decisions Taken and Discarded
 
 | # | Decisión | Alternativa descartada | Por qué |
 |---|---|---|---|
-| 1 | Mock en `app/_data/mock.ts` | Inline en `page.tsx` | Respuesta más reciente del usuario prevalece; mejor separación de responsabilidades. |
-| 2 | Componentes en `app/_components/` con `shared/` y `home/` planos | `components/` raíz, subcarpetas anidadas (sidebar/post/feed) | Co-located bajo `app/` con prefijo `_` (excluido de ruteo); estructura semántica clara. |
+| 1 | Mock en `data/mock.ts` (raíz) | Inline en `page.tsx` | Respuesta más reciente del usuario prevalece; mejor separación de responsabilidades. |
+| 2 | Componentes en `components/` (raíz) con `shared/` y `home/` planos | `app/_components/` co-located | `app/` se reserva para rutas y sus configs; convención estándar de Next.js. |
 | 3 | Todos los links `href="#"` | 404 nativo o stubs | Lo más simple; futuros specs crearán esas rutas. |
 | 4 | Tailwind 4 + tokens semánticos | Mantener `style=""` inline | Idiomático del stack y mejor mantenibilidad. |
 | 5 | `next/font/google` | `<link>` Google Fonts CDN | Sin layout shift; idiomático Next.js 16. |
@@ -139,7 +143,7 @@ Cada paso deja el sistema construible.
 - **Drift pixel-perfect:** la referencia usa inline styles en px; mapear a utilities de Tailwind puede introducir diferencias de ~1–2px. *Mitigación:* screenshot side-by-side a 1280px antes de mergear.
 - **Hamburguesa solapa CTA en mobile** si el main no tiene top padding suficiente. *Mitigación:* posición fija `top-4 left-4 z-50`; CTA con `pt-14` en mobile.
 - **Variables de fuente en `@theme`:** Tailwind 4 puede exigir declarar `fontFamily.fredoka` / `fontFamily.nunito` en `theme.extend` en vez de CSS crudo. *Mitigación:* verificar en el paso 1; si no las toma, mover a `theme.extend.fontFamily`.
-- **Subcarpetas bajo `app/_components/` y routing:** solo `_components` está excluido del ruteo; sus subcarpetas heredan ese comportamiento, pero conviene no crear `page.tsx` dentro de ellas. *Mitigación:* en el plan ningún subcomponente es un page.
+- **Subcarpetas bajo `components/` (raíz):** ya no hay riesgo de routing accidental porque nada bajo `app/` es compartido. *Mitigación:* aun así, ningún componente debe llamarse `page.tsx` para evitar que Next.js lo confunda con una ruta.
 - **Hydration mismatch** si el drawer renderiza distinto en server/client. *Mitigación:* `MobileDrawer` lleva `"use client"`; el resto de la página es server component puro.
 
 ## 8. Quick Definition Note
