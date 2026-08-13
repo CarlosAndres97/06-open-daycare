@@ -1,26 +1,79 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+@theme {
+  --color-cream: #F6ECDF;
+  --color-cream-soft: #FFFDF9;
+
+  --color-coral-300: #F8C3A8;
+  --color-coral-400: #F2937A;
+  --color-coral-500: #F4977E;
+  --color-coral-600: #EE8164;
+  --color-coral-700: #D9583C;
+  --color-coral-800: #E0654A;
+  --color-coral-900: #C5503A;
+
+  --color-sage-100: #CFEBD8;
+  --color-sage-700: #3E9B6C;
+
+  --color-sky-100: #C7E7F1;
+  --color-sky-300: #A9D9E8;
+  --color-sky-700: #2E89A6;
+  --color-sky-900: #1F7A93;
+
+  --color-indigo-100: #CCD8F4;
+  --color-indigo-700: #4E72C8;
+
+  --color-beige-100: #FBE3D8;
+  --color-beige-200: #ECE0D0;
+  --color-beige-300: #E4D6C4;
+  --color-beige-400: #E7DAC8;
+  --color-beige-500: #F0E6D8;
+  --color-beige-600: #F4ECE1;
+  --color-beige-700: #DBCDBA;
+
+  --color-ink-100: #B0A290;
+  --color-ink-200: #A89A8B;
+  --color-ink-300: #94887B;
+  --color-ink-400: #8A7C6D;
+  --color-ink-500: #6E6359;
+  --color-ink-700: #4A4038;
+  --color-ink-900: #3F362E;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --font-fredoka: var(--font-fredoka);
+  --font-nunito: var(--font-nunito);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-nunito), system-ui, sans-serif;
+  background: var(--color-cream);
+  color: var(--color-ink-900);
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-beige-300);
+  border-radius: 8px;
+  border: 3px solid transparent;
+  background-clip: content-box;
 }
