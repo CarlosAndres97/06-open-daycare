@@ -1,6 +1,6 @@
 # SPEC 02 — Kids List and Profile UI
 
-**Status:** Implemented
+**Status:** Verified
 **Date:** 2026-08-15
 **Depends on:** SPEC 01
 **Author:** opencode
