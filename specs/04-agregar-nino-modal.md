@@ -1,6 +1,6 @@
 # SPEC 04 — Agregar niño modal
 
-> **Status:** Approved
+> **Status:** Verified
 > **Depends on:** SPEC 02
 > **Date:** 2026-08-16
 > **Objective:** Implementar el modal de agregar niño con validación required para nombre, fecha de nacimiento y sala.
@@ -40,16 +40,16 @@ Este spec no introduce nuevas estructuras de datos. El modal es puramente UI.
 
 ## 4. Acceptance Criteria
 
-- [ ] `npm run build` sin errores.
-- [ ] `npm run lint` sin errores.
-- [ ] Al hacer clic en "Agregar niño" en `/kids`, se abre el modal.
-- [ ] El modal tiene backdrop oscuro que cierra al hacer clic fuera.
-- [ ] Los campos nombre, fecha de nacimiento y sala tienen el atributo `required`.
-- [ ] El date-picker usa `<input type="date">`.
-- [ ] El dropdown de sala es un `<select>` estilizado.
-- [ ] Los campos opcionales (alergias, notas médicas) no tienen `required`.
-- [ ] El botón "Guardar" es un link con `href="#"` (sin funcionalidad).
-- [ ] El diseño visual coincide con `referencias/pantallas/agregar-nino.dc.html`.
+- [x] `npm run build` sin errores.
+- [x] `npm run lint` sin errores.
+- [x] Al hacer clic en "Agregar niño" en `/kids`, se abre el modal.
+- [x] El modal tiene backdrop oscuro que cierra al hacer clic fuera.
+- [x] Los campos nombre, fecha de nacimiento y sala tienen el atributo `required`.
+- [x] El date-picker usa `<input type="date">`.
+- [x] El dropdown de sala es un `<select>` estilizado.
+- [x] Los campos opcionales (alergias, notas médicas) no tienen `required`.
+- [x] El botón "Guardar" es un link con `href="#"` (sin funcionalidad).
+- [x] El diseño visual coincide con `referencias/pantallas/agregar-nino.dc.html`.
 
 ## 5. Decisions Taken and Discarded
 
@@ -59,6 +59,24 @@ Este spec no introduce nuevas estructuras de datos. El modal es puramente UI.
 | 2 | Atributo `required` HTML5 | Validación personalizada con estados de error | El usuario decidió solo `required`; más simple. |
 | 3 | Backdrop cierra al hacer clic fuera | Solo cerrar con botón "Cancelar" | El usuario confirmó que sí. |
 | 4 | Sala hardcodeada ("Soles") | Datos de salas desde mock/config | Por ahora solo hardcodeado; futuro spec podría expandir. |
+
+## 7. Verification Report
+
+| Criterio                                               | Type     | Status |
+|---------------------------------------------------------|----------|--------|
+| `npm run build` sin errores.                           | build    | ✅     |
+| `npm run lint` sin errores.                            | lint     | ✅     |
+| Al hacer clic en "Agregar niño" en `/kids`, se abre el modal. | runtime | ✅     |
+| El modal tiene backdrop oscuro que cierra al hacer clic fuera. | runtime | ✅     |
+| Los campos nombre, fecha de nacimiento y sala tienen el atributo `required`. | code | ✅     |
+| El date-picker usa `<input type="date">`.             | code     | ✅     |
+| El dropdown de sala es un `<select>` estilizado.       | code     | ✅     |
+| Los campos opcionales (alergias, notas médicas) no tienen `required`. | code | ✅     |
+| El botón "Guardar" es un link con `href="#"`.          | manual  | ✅     |
+| El diseño visual coincide con referencia.              | visual  | ✅     |
+
+Passed: 10/10
+Screenshots: .playwright-mcp/verification-04-agregar-nino-modal/
 
 ## 6. What is **not** in this spec
 
