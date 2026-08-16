@@ -47,6 +47,11 @@
 
   --color-yellow-100: #F7E7A6;
   --color-yellow-700: #9A7B1E;
+
+  --color-warning-100: #FBF1D6;
+  --color-warning-700: #8A7234;
+
+  --color-success-500: #5FB97E;
 }
 
 @theme inline {
