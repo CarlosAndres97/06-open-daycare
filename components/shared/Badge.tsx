@@ -1,4 +1,4 @@
-type Tone = "sage" | "sky" | "indigo";
+type Tone = "sage" | "sky" | "indigo" | "coral-soft" | "pink" | "yellow";
 
 const toneStyles: Record<Tone, { bg: string; text: string; dot: string }> = {
   sage: {
@@ -15,6 +15,21 @@ const toneStyles: Record<Tone, { bg: string; text: string; dot: string }> = {
     bg: "bg-indigo-100",
     text: "text-indigo-700",
     dot: "bg-indigo-700",
+  },
+  "coral-soft": {
+    bg: "bg-coral-soft-100",
+    text: "text-coral-soft-700",
+    dot: "bg-coral-soft-700",
+  },
+  pink: {
+    bg: "bg-pink-100",
+    text: "text-pink-700",
+    dot: "bg-pink-700",
+  },
+  yellow: {
+    bg: "bg-yellow-100",
+    text: "text-yellow-700",
+    dot: "bg-yellow-700",
   },
 };
 

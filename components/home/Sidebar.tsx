@@ -9,21 +9,22 @@ import {
   IconLogout,
 } from "@/components/shared/Icons";
 
+type NavKey = "feed" | "ninos" | "avisos" | "mi-cuenta";
+
 type NavItem = {
-  key: string;
+  key: NavKey;
   label: string;
   icon: typeof IconHome;
-  active: boolean;
 };
 
 const navItems: NavItem[] = [
-  { key: "feed", label: "Feed", icon: IconHome, active: true },
-  { key: "ninos", label: "Niños", icon: IconUsers, active: false },
-  { key: "avisos", label: "Avisos", icon: IconBell, active: false },
-  { key: "mi-cuenta", label: "Mi cuenta", icon: IconUser, active: false },
+  { key: "feed", label: "Feed", icon: IconHome },
+  { key: "ninos", label: "Niños", icon: IconUsers },
+  { key: "avisos", label: "Avisos", icon: IconBell },
+  { key: "mi-cuenta", label: "Mi cuenta", icon: IconUser },
 ];
 
-export function Sidebar() {
+export function Sidebar({ activeKey = "feed" }: { activeKey?: NavKey }) {
   return (
     <aside className="w-[248px] shrink-0 bg-cream-soft border-r border-beige-200 flex flex-col p-6 sticky top-0 h-screen">
       <a
@@ -52,7 +53,9 @@ export function Sidebar() {
       </a>
 
       <nav className="flex flex-col gap-1 flex-1">
-        {navItems.map(({ key, label, icon: Icon, active }) => (
+        {navItems.map(({ key, label, icon: Icon }) => {
+          const active = key === activeKey;
+          return (
           <a
             key={key}
             href="#"
@@ -65,7 +68,8 @@ export function Sidebar() {
             <Icon width={19} height={19} />
             {label}
           </a>
-        ))}
+          );
+        })}
       </nav>
 
       <div className="border-t border-beige-200 pt-[14px] mt-[10px]">
