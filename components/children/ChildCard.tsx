@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Avatar } from "@/components/shared/Avatar";
 import { Badge } from "@/components/shared/Badge";
 import { IconChevronRight } from "@/components/shared/Icons";
@@ -29,7 +30,7 @@ const parentsLabel = (n: number | "none") => {
 
 export function ChildCard({ child }: ChildCardProps) {
   return (
-    <a
+    <Link
       href={`/kids/${child.id}`}
       className="flex items-center gap-3 bg-cream-soft border border-beige-200 rounded-2xl p-3 transition-[transform,border-color] duration-150 hover:border-[#F2A78E] hover:-translate-y-0.5"
     >
@@ -60,6 +61,6 @@ export function ChildCard({ child }: ChildCardProps) {
           />
         )}
       </div>
-    </a>
+    </Link>
   );
 }

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { MobileDrawer } from "@/components/home/MobileDrawer";
 import { Sidebar } from "@/components/home/Sidebar";
 import { ChildProfileHero } from "@/components/children/ChildProfileHero";
@@ -62,13 +63,13 @@ export default async function ChildProfilePage({
 
       <main className="flex-1 min-w-0 h-screen overflow-y-auto">
         <div className="max-w-[820px] w-full mx-auto pt-20 md:pt-[34px] px-5 md:px-10 pb-20">
-          <a
+          <Link
             href="/kids"
             className="flex items-center gap-[7px] text-ink-300 font-bold text-[14px] mb-5"
           >
             <IconChevronLeft width={18} height={18} strokeWidth={2.2} />
             Volver a Niños
-          </a>
+          </Link>
 
           <div className="flex flex-wrap gap-6 items-start">
             <div className="flex-1 min-w-[300px] flex flex-col gap-[18px]">

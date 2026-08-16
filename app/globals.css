@@ -54,35 +54,37 @@
   --font-nunito: var(--font-nunito);
 }
 
-* {
-  box-sizing: border-box;
-}
+@layer base {
+  * {
+    box-sizing: border-box;
+  }
 
-html,
-body {
-  margin: 0;
-  padding: 0;
-}
+  html,
+  body {
+    margin: 0;
+    padding: 0;
+  }
 
-body {
-  font-family: var(--font-nunito), system-ui, sans-serif;
-  background: var(--color-cream);
-  color: var(--color-ink-900);
-  -webkit-font-smoothing: antialiased;
-}
+  body {
+    font-family: var(--font-nunito), system-ui, sans-serif;
+    background: var(--color-cream);
+    color: var(--color-ink-900);
+    -webkit-font-smoothing: antialiased;
+  }
 
-a {
-  text-decoration: none;
-  color: inherit;
-}
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
 
-::-webkit-scrollbar {
-  width: 10px;
-}
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
 
-::-webkit-scrollbar-thumb {
-  background: var(--color-beige-300);
-  border-radius: 8px;
-  border: 3px solid transparent;
-  background-clip: content-box;
+  ::-webkit-scrollbar-thumb {
+    background: var(--color-beige-300);
+    border-radius: 8px;
+    border: 3px solid transparent;
+    background-clip: content-box;
+  }
 }
