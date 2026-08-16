@@ -38,6 +38,15 @@
   --color-ink-500: #6E6359;
   --color-ink-700: #4A4038;
   --color-ink-900: #3F362E;
+
+  --color-coral-soft-100: #FBD8CC;
+  --color-coral-soft-700: #D9684A;
+
+  --color-pink-100: #F9D2DE;
+  --color-pink-700: #C56486;
+
+  --color-yellow-100: #F7E7A6;
+  --color-yellow-700: #9A7B1E;
 }
 
 @theme inline {
