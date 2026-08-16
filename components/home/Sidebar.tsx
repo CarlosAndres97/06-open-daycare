@@ -9,7 +9,7 @@ import {
   IconLogout,
 } from "@/components/shared/Icons";
 
-type NavKey = "feed" | "ninos" | "avisos" | "mi-cuenta";
+export type NavKey = "feed" | "ninos" | "avisos" | "mi-cuenta";
 
 type NavItem = {
   key: NavKey;
