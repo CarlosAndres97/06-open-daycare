@@ -1,8 +1,12 @@
+"use client";
+
+import { useState } from "react";
 import { MobileDrawer } from "@/components/home/MobileDrawer";
 import { Sidebar } from "@/components/home/Sidebar";
 import { ChildrenHeader } from "@/components/children/ChildrenHeader";
 import { ChildrenSearch } from "@/components/children/ChildrenSearch";
 import { ChildCard } from "@/components/children/ChildCard";
+import { AddChildModal } from "@/components/children/AddChildModal";
 import type { Child } from "@/components/children/ChildCard";
 
 const CHILDREN: Child[] = [
@@ -84,6 +88,8 @@ const CHILDREN: Child[] = [
 ];
 
 export default function KidsPage() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-cream flex">
       <MobileDrawer activeKey="ninos" />
@@ -93,7 +99,7 @@ export default function KidsPage() {
 
       <main className="flex-1 min-w-0 h-screen overflow-y-auto">
         <div className="max-w-[880px] w-full mx-auto pt-20 md:pt-[34px] px-5 md:px-10 pb-20">
-          <ChildrenHeader />
+          <ChildrenHeader onAddClick={() => setIsModalOpen(true)} />
           <ChildrenSearch />
 
           <div className="flex items-center gap-[14px] mb-3.5">
@@ -113,6 +119,8 @@ export default function KidsPage() {
           </div>
         </div>
       </main>
+
+      <AddChildModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
     </div>
   );
 }
