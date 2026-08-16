@@ -166,3 +166,11 @@ export function IconAlert(props: IconProps) {
     </svg>
   );
 }
+
+export function IconCheck(props: IconProps) {
+  return (
+    <svg {...baseProps} strokeWidth={3} {...props}>
+      <polyline points="20 6 9 17 4 12" />
+    </svg>
+  );
+}
