@@ -1,6 +1,6 @@
 # SPEC 05 — Vincular padre modal
 
-> **Status:** Draft
+> **Status:** Approved
 > **Depends on:** SPEC 02
 > **Date:** 2026-08-16
 > **Objective:** Implementar el modal de vincular padre/madre/tutor a un niño desde su perfil.
