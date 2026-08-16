@@ -1,6 +1,6 @@
 # SPEC 03 — Login & Active Account
 
-**Status:** Approved
+**Status:** Verified
 **Date:** 2026-08-16
 **Depends on:** SPEC 01
 **Author:** opencode
@@ -162,24 +162,54 @@ Cada paso deja el sistema construible.
 
 ## 5. Acceptance Criteria
 
-- [ ] `npm run build` sin errores.
-- [ ] `npm run lint` sin errores.
-- [ ] `npm run dev` renderiza `/login` y `/active-account` sin warnings ni errores en consola.
-- [ ] Side-by-side a 1280px entre `/login` y `referencias/pantallas/login.dc.html`: mismas secciones, mismo orden, mismos textos, mismos colores (sin los botones Personal/Familia).
-- [ ] Side-by-side a 1280px entre `/active-account` y `referencias/pantallas/activar-cuenta.dc.html`: mismas secciones, mismo orden, mismos textos, mismos colores.
-- [ ] El login NO muestra los botones "Personal" ni "Familia"; el bloque "INGRESO COMO" tampoco se renderiza.
-- [ ] Inputs controlados: al tipear en cualquier input, el estado de React se actualiza (visible en React DevTools).
-- [ ] Validación inline: email vacío → "Ingresá tu email"; email sin `@` → "Email inválido"; password < 6 chars → "Mínimo 6 caracteres"; código ≠ 5 chars → "El código tiene 5 caracteres"; checkbox desactivado → "Necesitamos tu autorización".
-- [ ] Submit inválido: no avanza, no hace `router.push`, no muestra loading.
-- [ ] Submit válido: muestra "Ingresando…" / "Activando…" durante ~800 ms, luego navega a `/`.
-- [ ] Checkbox autorización arranca en `true`; click alterna a `false` (slot se vacía, sin check); click otra vez a `true`.
-- [ ] Links funcionan: "¿Olvidaste tu contraseña?" → `#`; "Activá tu cuenta" → `/active-account`; "Iniciar sesión" → `/login`.
-- [ ] A < 768px en `/login`: brand panel colapsa a header compacto (logo + tagline corto) encima del form; en desktop el panel ocupa la columna izquierda completa.
-- [ ] Tipografías: h1/h2 usa Fredoka; el resto usa Nunito.
-- [ ] Background `#F6ECDF` (cream) en ambas pantallas.
-- [ ] Inputs email/password tienen `bg-white` + `border-beige-200` + `rounded-[14px]` + `py-3.5 px-4`.
-- [ ] Botón submit primario: gradient coral-500→coral-600 + shadow `0_10px_22px_-8px_rgba(238,129,100,0.7)` + texto blanco font-extrabold 16px.
-- [ ] Estructura final coincide con el árbol descrito en §3.
+- [x] `npm run build` sin errores.
+- [x] `npm run lint` sin errores.
+- [x] `npm run dev` renderiza `/login` y `/active-account` sin warnings ni errores en consola.
+- [x] Side-by-side a 1280px entre `/login` y `referencias/pantallas/login.dc.html`: mismas secciones, mismo orden, mismos textos, mismos colores (sin los botones Personal/Familia).
+- [x] Side-by-side a 1280px entre `/active-account` y `referencias/pantallas/activar-cuenta.dc.html`: mismas secciones, mismo orden, mismos textos, mismos colores.
+- [x] El login NO muestra los botones "Personal" ni "Familia"; el bloque "INGRESO COMO" tampoco se renderiza.
+- [x] Inputs controlados: al tipear en cualquier input, el estado de React se actualiza (visible en React DevTools).
+- [x] Validación inline: email vacío → "Ingresá tu email"; email sin `@` → "Email inválido"; password < 6 chars → "Mínimo 6 caracteres"; código ≠ 5 chars → "El código tiene 5 caracteres"; checkbox desactivado → "Necesitamos tu autorización".
+- [x] Submit inválido: no avanza, no hace `router.push`, no muestra loading.
+- [x] Submit válido: muestra "Ingresando…" / "Activando…" durante ~800 ms, luego navega a `/`.
+- [x] Checkbox autorización arranca en `true`; click alterna a `false` (slot se vacía, sin check); click otra vez a `true`.
+- [x] Links funcionan: "¿Olvidaste tu contraseña?" → `#`; "Activá tu cuenta" → `/active-account`; "Iniciar sesión" → `/login`.
+- [x] A < 768px en `/login`: brand panel colapsa a header compacto (logo + tagline corto) encima del form; en desktop el panel ocupa la columna izquierda completa.
+- [x] Tipografías: h1/h2 usa Fredoka; el resto usa Nunito.
+- [x] Background `#F6ECDF` (cream) en ambas pantallas.
+- [x] Inputs email/password tienen `bg-white` + `border-beige-200` + `rounded-[14px]` + `py-3.5 px-4`.
+- [x] Botón submit primario: gradient coral-500→coral-600 + shadow `0_10px_22px_-8px_rgba(238,129,100,0.7)` + texto blanco font-extrabold 16px.
+- [x] Estructura final coincide con el árbol descrito en §3.
+
+## 9. Verification Report
+
+**Date:** 2026-08-16
+**Verifier:** opencode (spec-verifier skill)
+
+| # | Criterion | Type | Status |
+|---|-----------|------|--------|
+| 1 | `npm run build` sin errores | build | ✅ |
+| 2 | `npm run lint` sin errores | lint | ✅ |
+| 3 | `npm run dev` renderiza sin warnings/errors | runtime | ✅ |
+| 4 | Side-by-side 1280px `/login` vs ref | visual | ✅ |
+| 5 | Side-by-side 1280px `/active-account` vs ref | visual | ✅ |
+| 6 | Sin botones Personal/Familia | manual | ✅ |
+| 7 | Inputs controlados | manual | ✅ |
+| 8 | Validación inline (5 mensajes) | manual | ✅ |
+| 9 | Submit inválido no navega | manual | ✅ |
+| 10 | Submit válido: loader + redirect a `/` | manual | ✅ |
+| 11 | Checkbox toggle on/off | manual | ✅ |
+| 12 | Links (#[/active-account][/login]) | manual | ✅ |
+| 13 | Mobile 375px stacked | visual | ✅ |
+| 14 | Fredoka h1/h2, Nunito resto | manual | ✅ |
+| 15 | Background `#F6ECDF` | manual | ✅ |
+| 16 | Input styling matches spec | manual | ✅ |
+| 17 | Submit button gradient + shadow + white | manual | ✅ |
+| 18 | Estructura §3 | structure | ✅ |
+
+**Passed: 18/18**
+
+Screenshots en `.playwright-mcp/verification-03-login-and-active-account/`.
 
 ## 6. Decisions Taken and Discarded
 
