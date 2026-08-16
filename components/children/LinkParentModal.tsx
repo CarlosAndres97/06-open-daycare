@@ -29,7 +29,7 @@ export function LinkParentModal({ isOpen, onClose, childName }: LinkParentModalP
           </div>
           <button
             onClick={onClose}
-            className="w-[34px] h-[34px] rounded-[10px] bg-[#F0E6D8] text-[#94887B] flex items-center justify-center"
+            className="w-[34px] h-[34px] rounded-[10px] bg-[#F0E6D8] text-[#94887B] flex items-center justify-center hover:bg-[#E5D8C4] hover:text-[#6E6359] transition-colors cursor-pointer"
           >
             <svg
               width="18"
@@ -89,13 +89,13 @@ export function LinkParentModal({ isOpen, onClose, childName }: LinkParentModalP
             PARENTESCO
           </div>
           <div className="flex gap-[9px] mb-5">
-            <button className="flex-1 py-[11px] rounded-[999px] border border-[#9FB8EC] bg-[#CCD8F4] text-[#4E72C8] font-extrabold text-[14px]">
+            <button className="flex-1 py-[11px] rounded-[999px] border border-[#9FB8EC] bg-[#CCD8F4] text-[#4E72C8] font-extrabold text-[14px] hover:bg-[#B8C9F0] hover:border-[#8BA6E0] transition-colors cursor-pointer">
               Mamá
             </button>
-            <button className="flex-1 py-[11px] rounded-[999px] border border-[#ECE0D0] bg-[#FFFDF9] text-[#6E6359] font-extrabold text-[14px]">
+            <button className="flex-1 py-[11px] rounded-[999px] border border-[#ECE0D0] bg-[#FFFDF9] text-[#6E6359] font-extrabold text-[14px] hover:bg-[#F5EEE3] hover:border-[#D9CEBB] transition-colors cursor-pointer">
               Papá
             </button>
-            <button className="flex-1 py-[11px] rounded-[999px] border border-[#ECE0D0] bg-[#FFFDF9] text-[#6E6359] font-extrabold text-[14px]">
+            <button className="flex-1 py-[11px] rounded-[999px] border border-[#ECE0D0] bg-[#FFFDF9] text-[#6E6359] font-extrabold text-[14px] hover:bg-[#F5EEE3] hover:border-[#D9CEBB] transition-colors cursor-pointer">
               Tutor/a
             </button>
           </div>
@@ -112,7 +112,7 @@ export function LinkParentModal({ isOpen, onClose, childName }: LinkParentModalP
             </div>
           </div>
 
-          <button className="w-full py-[14px] rounded-[14px] bg-gradient-to-b from-[#F4977E] to-[#EE8164] text-white font-extrabold text-[15.5px] shadow-[0_10px_22px_-8px_rgba(238,129,100,0.7)] flex items-center justify-center gap-[9px]">
+          <button className="w-full py-[14px] rounded-[14px] bg-gradient-to-b from-[#F4977E] to-[#EE8164] text-white font-extrabold text-[15.5px] shadow-[0_10px_22px_-8px_rgba(238,129,100,0.7)] flex items-center justify-center gap-[9px] hover:from-[#F08A6B] hover:to-[#E57658] transition-all hover:shadow-[0_12px_24px_-10px_rgba(238,129,100,0.8)] cursor-pointer">
             <svg
               width="19"
               height="19"

@@ -8,9 +8,9 @@ export function LinkParentRow({ onClick }: LinkParentRowProps) {
   return (
     <button
       onClick={onClick}
-      className="flex items-center gap-3 pt-2 w-full text-left"
+      className="flex items-center gap-3 pt-2 w-full text-left cursor-pointer rounded-xl px-2 py-1 -mx-2 hover:bg-beige-100/60 transition-colors"
     >
-      <span className="w-10 h-10 rounded-full border border-dashed border-beige-300 flex items-center justify-center text-ink-100 shrink-0">
+      <span className="w-10 h-10 rounded-full border border-dashed border-beige-300 flex items-center justify-center text-ink-100 shrink-0 group-hover:border-coral-900/40">
         <IconPlus width={18} height={18} strokeWidth={2.4} />
       </span>
       <span className="text-coral-900 font-extrabold text-[14.5px]">
