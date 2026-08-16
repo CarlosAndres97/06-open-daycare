@@ -1,0 +1,18 @@
+
+> open-daycare@0.1.0 dev
+> next dev
+
+▲ Next.js 16.2.11 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.106:3000
+✓ Ready in 5.4s
+
+○ Compiling / ...
+ GET / 200 in 5.1s (next.js: 4.1s, application-code: 963ms)
+ GET / 200 in 260ms (next.js: 10ms, application-code: 250ms)
+ GET /kids 200 in 920ms (next.js: 808ms, application-code: 112ms)
+ GET / 200 in 97ms (next.js: 9ms, application-code: 88ms)
+ GET /kids 200 in 93ms (next.js: 11ms, application-code: 82ms)
+[?25h
+
+C:\Users\Lenovo\Desktop\opencode\06-open-daycare>

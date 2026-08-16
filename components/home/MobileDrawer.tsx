@@ -3,8 +3,9 @@
 import { useState } from "react";
 import { Sidebar } from "@/components/home/Sidebar";
 import { IconMenu, IconClose } from "@/components/shared/Icons";
+import type { NavKey } from "@/components/home/Sidebar";
 
-export function MobileDrawer() {
+export function MobileDrawer({ activeKey = "feed" }: { activeKey?: NavKey }) {
   const [open, setOpen] = useState(false);
   const toggle = () => setOpen((v) => !v);
   const close = () => setOpen(false);
@@ -32,7 +33,7 @@ export function MobileDrawer() {
             aria-hidden="true"
           />
           <div className="md:hidden fixed inset-y-0 left-0 w-[248px] z-40 transition-transform duration-200 ease-out">
-            <Sidebar />
+            <Sidebar activeKey={activeKey} />
           </div>
         </>
       )}

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { Avatar } from "@/components/shared/Avatar";
 import {
   IconSun,
@@ -9,25 +10,27 @@ import {
   IconLogout,
 } from "@/components/shared/Icons";
 
+export type NavKey = "feed" | "ninos" | "avisos" | "mi-cuenta";
+
 type NavItem = {
-  key: string;
+  key: NavKey;
   label: string;
   icon: typeof IconHome;
-  active: boolean;
+  href: string;
 };
 
 const navItems: NavItem[] = [
-  { key: "feed", label: "Feed", icon: IconHome, active: true },
-  { key: "ninos", label: "Niños", icon: IconUsers, active: false },
-  { key: "avisos", label: "Avisos", icon: IconBell, active: false },
-  { key: "mi-cuenta", label: "Mi cuenta", icon: IconUser, active: false },
+  { key: "feed", label: "Feed", icon: IconHome, href: "/" },
+  { key: "ninos", label: "Niños", icon: IconUsers, href: "/kids" },
+  { key: "avisos", label: "Avisos", icon: IconBell, href: "#" },
+  { key: "mi-cuenta", label: "Mi cuenta", icon: IconUser, href: "#" },
 ];
 
-export function Sidebar() {
+export function Sidebar({ activeKey = "feed" }: { activeKey?: NavKey }) {
   return (
     <aside className="w-[248px] shrink-0 bg-cream-soft border-r border-beige-200 flex flex-col p-6 sticky top-0 h-screen">
-      <a
-        href="#"
+      <Link
+        href="/"
         className="flex items-center gap-[11px] py-1 px-2 pb-[22px]"
       >
         <div className="w-[38px] h-[38px] shrink-0 rounded-xl bg-gradient-to-br from-coral-300 to-coral-400 flex items-center justify-center text-white">
@@ -41,21 +44,23 @@ export function Sidebar() {
             Sala Soles
           </div>
         </div>
-      </a>
+      </Link>
 
-      <a
+      <Link
         href="#"
         className="flex items-center justify-center gap-2 w-full py-3 rounded-[14px] bg-gradient-to-b from-coral-500 to-coral-600 text-white font-extrabold text-[14.5px] shadow-[0_8px_18px_-8px_rgba(238,129,100,0.75)] mb-[18px]"
       >
         <IconPlus width={17} height={17} strokeWidth={2.4} />
         Nueva publicación
-      </a>
+      </Link>
 
       <nav className="flex flex-col gap-1 flex-1">
-        {navItems.map(({ key, label, icon: Icon, active }) => (
-          <a
+        {navItems.map(({ key, label, icon: Icon, href }) => {
+          const active = key === activeKey;
+          return (
+          <Link
             key={key}
-            href="#"
+            href={href}
             className={`flex items-center gap-3 py-[11px] px-3 rounded-xl text-[14.5px] ${
               active
                 ? "bg-beige-100 text-coral-700 font-extrabold"
@@ -64,8 +69,9 @@ export function Sidebar() {
           >
             <Icon width={19} height={19} />
             {label}
-          </a>
-        ))}
+          </Link>
+          );
+        })}
       </nav>
 
       <div className="border-t border-beige-200 pt-[14px] mt-[10px]">
@@ -84,13 +90,13 @@ export function Sidebar() {
               Maestra · Soles
             </div>
           </div>
-          <a
+          <Link
             href="#"
             title="Cerrar sesión"
             className="shrink-0 w-8 h-8 rounded-[10px] bg-cream text-ink-300 flex items-center justify-center"
           >
             <IconLogout width={16} height={16} />
-          </a>
+          </Link>
         </div>
       </div>
     </aside>
