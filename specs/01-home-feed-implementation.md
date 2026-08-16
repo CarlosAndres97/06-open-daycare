@@ -1,6 +1,6 @@
 # SPEC 01 — Home Feed Implementation
 
-**Status:** Implemented
+**Status:** Verified
 **Date:** 2026-08-13
 **Depends on:** —
 **Author:** opencode
