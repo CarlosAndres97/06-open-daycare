@@ -5,7 +5,13 @@ import { Sidebar } from "@/components/home/Sidebar";
 import { IconMenu, IconClose } from "@/components/shared/Icons";
 import type { NavKey } from "@/components/home/Sidebar";
 
-export function MobileDrawer({ activeKey = "feed" }: { activeKey?: NavKey }) {
+export function MobileDrawer({
+  activeKey = "feed",
+  onCreatePost,
+}: {
+  activeKey?: NavKey;
+  onCreatePost?: () => void;
+}) {
   const [open, setOpen] = useState(false);
   const toggle = () => setOpen((v) => !v);
   const close = () => setOpen(false);
@@ -33,7 +39,7 @@ export function MobileDrawer({ activeKey = "feed" }: { activeKey?: NavKey }) {
             aria-hidden="true"
           />
           <div className="md:hidden fixed inset-y-0 left-0 w-[248px] z-40 transition-transform duration-200 ease-out">
-            <Sidebar activeKey={activeKey} />
+            <Sidebar activeKey={activeKey} onCreatePost={onCreatePost} />
           </div>
         </>
       )}
