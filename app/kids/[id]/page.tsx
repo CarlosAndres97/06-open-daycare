@@ -1,3 +1,6 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import { MobileDrawer } from "@/components/home/MobileDrawer";
 import { Sidebar } from "@/components/home/Sidebar";
@@ -5,6 +8,7 @@ import { ChildProfileHero } from "@/components/children/ChildProfileHero";
 import { AllergyAlert } from "@/components/children/AllergyAlert";
 import { ChildInfoCard } from "@/components/children/ChildInfoCard";
 import { ParentList } from "@/components/children/ParentList";
+import { LinkParentModal } from "@/components/children/LinkParentModal";
 import { IconSun, IconChevronLeft } from "@/components/shared/Icons";
 import type { Child } from "@/components/children/ChildCard";
 import type { Parent } from "@/components/children/ParentListItem";
@@ -47,13 +51,13 @@ const PARENTS: Parent[] = [
   },
 ];
 
-export default async function ChildProfilePage({
+export default function ChildProfilePage({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
-  const { id } = await params;
-  void id;
+  const [isLinkModalOpen, setIsLinkModalOpen] = useState(false);
+
   return (
     <div className="min-h-screen bg-cream flex">
       <MobileDrawer activeKey="ninos" />
@@ -85,11 +89,17 @@ export default async function ChildProfilePage({
                 <IconSun width={18} height={18} />
                 Resumen del día
               </a>
-              <ParentList parents={PARENTS} />
+              <ParentList parents={PARENTS} onLinkParent={() => setIsLinkModalOpen(true)} />
             </div>
           </div>
         </div>
       </main>
+
+      <LinkParentModal
+        isOpen={isLinkModalOpen}
+        onClose={() => setIsLinkModalOpen(false)}
+        childName={PROFILE.name}
+      />
     </div>
   );
 }
