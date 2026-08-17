@@ -1,6 +1,6 @@
 # SPEC 06 — Crear publicación modal
 
-> **Status:** Approved
+> **Status:** Implemented
 > **Depends on:** SPEC 01
 > **Date:** 2026-08-16
 > **Objective:** Implementar el modal de crear una nueva publicación.

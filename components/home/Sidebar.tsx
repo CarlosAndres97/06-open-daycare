@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { Avatar } from "@/components/shared/Avatar";
 import {
@@ -26,7 +28,13 @@ const navItems: NavItem[] = [
   { key: "mi-cuenta", label: "Mi cuenta", icon: IconUser, href: "#" },
 ];
 
-export function Sidebar({ activeKey = "feed" }: { activeKey?: NavKey }) {
+export function Sidebar({
+  activeKey = "feed",
+  onCreatePost,
+}: {
+  activeKey?: NavKey;
+  onCreatePost?: () => void;
+}) {
   return (
     <aside className="w-[248px] shrink-0 bg-cream-soft border-r border-beige-200 flex flex-col p-6 sticky top-0 h-screen">
       <Link
@@ -48,6 +56,12 @@ export function Sidebar({ activeKey = "feed" }: { activeKey?: NavKey }) {
 
       <Link
         href="#"
+        onClick={(e) => {
+          if (onCreatePost) {
+            e.preventDefault();
+            onCreatePost();
+          }
+        }}
         className="flex items-center justify-center gap-2 w-full py-3 rounded-[14px] bg-gradient-to-b from-coral-500 to-coral-600 text-white font-extrabold text-[14.5px] shadow-[0_8px_18px_-8px_rgba(238,129,100,0.75)] mb-[18px]"
       >
         <IconPlus width={17} height={17} strokeWidth={2.4} />
