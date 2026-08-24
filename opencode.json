@@ -1,5 +1,6 @@
 {
   "$schema": "https://opencode.ai/config.json",
+  "lsp":true,
   "command": {
     "spec": {
       "description": "Crea especificaciones de pantallas y funcionalidades",
@@ -15,6 +16,11 @@
       "type": "local",
       "command": ["npx", "-y", "@playwright/mcp@latest"],
       "enabled": true
+    },
+    "supabase": {
+      "type": "remote",
+      "url": "https://mcp.supabase.com/mcp?project_ref=rrujkjlvauyydrrenxne&features=docs%2Caccount%2Cdatabase%2Cdebugging%2Cdevelopment%2Cfunctions%2Cbranching",
+      "enabled": true
     }
   },
   "permission": {
@@ -22,5 +28,11 @@
       "/tmp/**": "allow"
     },
     "bash": "allow"
+  },
+  "references":{
+    "docs":{
+      "path":"../07-DB-Schema",
+      "description":"Schema de base de datos, tablas, columnas y referencias a crear, esto no esta implementado en la base de datos, solo es para referencia"
+    }
   }
 }

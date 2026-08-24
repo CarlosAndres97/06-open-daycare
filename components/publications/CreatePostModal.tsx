@@ -27,9 +27,31 @@ const defaultDescription =
   "Pintamos con témperas esta mañana. Mateo eligió el azul para todo y se concentró un montón.";
 
 export function CreatePostModal({ isOpen, onClose }: CreatePostModalProps) {
-  const [selectedKid, setSelectedKid] = useState("1");
+  const [selectedKids, setSelectedKids] = useState<string[]>(["1"]);
   const [selectedType, setSelectedType] = useState("Actividad");
   const [description, setDescription] = useState(defaultDescription);
+
+  const isAllSelected = selectedKids.length === kids.length;
+
+  const handleKidClick = (kidId: string) => {
+    if (isAllSelected) {
+      setSelectedKids([kidId]);
+    } else {
+      setSelectedKids((prev) =>
+        prev.includes(kidId)
+          ? prev.filter((id) => id !== kidId)
+          : [...prev, kidId]
+      );
+    }
+  };
+
+  const handleAllClick = () => {
+    if (isAllSelected) {
+      setSelectedKids([kids[0].id]);
+    } else {
+      setSelectedKids(kids.map((kid) => kid.id));
+    }
+  };
 
   if (!isOpen) return null;
 
@@ -62,53 +84,56 @@ export function CreatePostModal({ isOpen, onClose }: CreatePostModalProps) {
             PARA
           </div>
           <div className="flex flex-wrap gap-[9px] mb-[22px]">
-            {kids.map((kid) => (
-              <button
-                key={kid.id}
-                onClick={() => setSelectedKid(kid.id)}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  padding: "6px 14px 6px 6px",
-                  borderRadius: "999px",
-                  border: selectedKid === kid.id ? "1.5px solid #3F362E" : "1.5px solid #ECE0D0",
-                  background: selectedKid === kid.id ? "#3F362E" : "#FFFDF9",
-                  color: selectedKid === kid.id ? "#fff" : "#6E6359",
-                  fontWeight: 700,
-                  fontSize: "14px",
-                  cursor: "pointer",
-                  transition: "all 0.2s ease",
-                }}
-              >
-                <span
+            {kids.map((kid) => {
+              const isSelected = selectedKids.includes(kid.id);
+              return (
+                <button
+                  key={kid.id}
+                  onClick={() => handleKidClick(kid.id)}
                   style={{
-                    width: "26px",
-                    height: "26px",
-                    borderRadius: "50%",
-                    background: kid.avatarBg,
-                    color: kid.avatarColor,
                     display: "flex",
                     alignItems: "center",
-                    justifyContent: "center",
-                    fontFamily: "Fredoka, sans-serif",
-                    fontWeight: 600,
-                    fontSize: "13px",
+                    gap: "8px",
+                    padding: "6px 14px 6px 6px",
+                    borderRadius: "999px",
+                    border: isSelected ? "1.5px solid #3F362E" : "1.5px solid #ECE0D0",
+                    background: isSelected ? "#3F362E" : "#FFFDF9",
+                    color: isSelected ? "#fff" : "#6E6359",
+                    fontWeight: 700,
+                    fontSize: "14px",
+                    cursor: "pointer",
+                    transition: "all 0.2s ease",
                   }}
                 >
-                  {kid.initials}
-                </span>
-                {kid.name}
-              </button>
-            ))}
+                  <span
+                    style={{
+                      width: "26px",
+                      height: "26px",
+                      borderRadius: "50%",
+                      background: kid.avatarBg,
+                      color: isSelected ? "#fff" : kid.avatarColor,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      fontFamily: "Fredoka, sans-serif",
+                      fontWeight: 600,
+                      fontSize: "13px",
+                    }}
+                  >
+                    {kid.initials}
+                  </span>
+                  {kid.name}
+                </button>
+              );
+            })}
             <button
-              onClick={() => setSelectedKid("sala")}
+              onClick={handleAllClick}
               style={{
                 padding: "6px 16px",
                 borderRadius: "999px",
-                border: selectedKid === "sala" ? "1.5px solid #3F362E" : "1.5px solid #ECE0D0",
-                background: selectedKid === "sala" ? "#3F362E" : "#FFFDF9",
-                color: selectedKid === "sala" ? "#fff" : "#6E6359",
+                border: isAllSelected ? "1.5px solid #3F362E" : "1.5px solid #ECE0D0",
+                background: isAllSelected ? "#3F362E" : "#FFFDF9",
+                color: isAllSelected ? "#fff" : "#6E6359",
                 fontWeight: 700,
                 fontSize: "14px",
                 cursor: "pointer",
