@@ -1,6 +1,6 @@
 # SPEC 07 — Tabla `daycares` (entidad raíz)
 
-> **Status:** Approved
+> **Status:** Verified
 > **Depends on:** —
 > **Date:** 2026-08-23
 > **Objective:** Crear la tabla `public.daycares` en el proyecto Supabase remoto siguiendo el diccionario de `07-DB-Schema`, con RLS activado (policy permisiva temporal) y una fila seed de desarrollo.
@@ -68,17 +68,17 @@ Cada paso deja el sistema en estado verificable.
 
 ## 4. Acceptance criteria
 
-- [ ] `public.daycares` existe en el remoto.
-- [ ] La tabla tiene exactamente 3 columnas: `id uuid`, `name text`, `created_at timestamptz`.
-- [ ] `id` es PK con default `gen_random_uuid()`.
-- [ ] `created_at` tiene default `now()` y es `not null`.
-- [ ] RLS está activado (`relrowsecurity = true`) en `public.daycares`.
-- [ ] Existe una policy `SELECT` que cubre roles `anon` y `authenticated` con `using (true)`.
-- [ ] Hay exactamente 1 fila seed con `name = 'Guardería Sala Soles'`.
-- [ ] `get_advisors (security)` no reporta issues nuevos referidos a `daycares`.
-- [ ] `get_advisors (performance)` no reporta issues nuevos referidos a `daycares`.
-- [ ] `npm run build` finaliza sin errores.
-- [ ] `npm run lint` finaliza sin errores.
+- [x] `public.daycares` existe en el remoto.
+- [x] La tabla tiene exactamente 3 columnas: `id uuid`, `name text`, `created_at timestamptz`.
+- [x] `id` es PK con default `gen_random_uuid()`.
+- [x] `created_at` tiene default `now()` y es `not null`.
+- [x] RLS está activado (`relrowsecurity = true`) en `public.daycares`.
+- [x] Existe una policy `SELECT` que cubre roles `anon` y `authenticated` con `using (true)`.
+- [x] Hay exactamente 1 fila seed con `name = 'Guardería Sala Soles'`.
+- [x] `get_advisors (security)` no reporta issues nuevos referidos a `daycares`.
+- [x] `get_advisors (performance)` no reporta issues nuevos referidos a `daycares`.
+- [x] `npm run build` finaliza sin errores.
+- [x] `npm run lint` finaliza sin errores.
 
 ## 5. Decisions
 
@@ -108,3 +108,28 @@ Cada paso deja el sistema en estado verificable.
 - Cualquier cambio en código de aplicación (`app/`, `components/`, `data/`).
 - Storage buckets, Auth providers, Realtime channels, Edge Functions, Vectors, Cron, Queues.
 - Configuración local de Supabase CLI (`supabase init`, `config.toml`, `supabase/migrations/`).
+
+## Verification Report
+
+> Date: 2026-08-25
+
+| Criterio | Type | Status |
+| --- | --- | --- |
+| `public.daycares` existe en el remoto. | db | ✅ |
+| La tabla tiene exactamente 3 columnas: `id uuid`, `name text`, `created_at timestamptz`. | db | ✅ |
+| `id` es PK con default `gen_random_uuid()`. | db | ✅ |
+| `created_at` tiene default `now()` y es `not null`. | db | ✅ |
+| RLS está activado (`relrowsecurity = true`) en `public.daycares`. | db | ✅ |
+| Existe una policy `SELECT` que cubre roles `anon` y `authenticated` con `using (true)`. | db | ✅ |
+| Hay exactamente 1 fila seed con `name = 'Guardería Sala Soles'`. | db | ✅ |
+| `get_advisors (security)` no reporta issues nuevos referidos a `daycares`. | db | ✅ |
+| `get_advisors (performance)` no reporta issues nuevos referidos a `daycares`. | db | ✅ |
+| `npm run build` finaliza sin errores. | build | ✅ |
+| `npm run lint` finaliza sin errores. | lint | ✅ |
+
+Passed: 11/11
+
+Notes:
+
+- Security advisories still list 2 pre-existing WARN lints for `public.rls_auto_enable()` (SECURITY DEFINER callable by `anon`/`authenticated`) — they predate this spec and are unrelated to `public.daycares`.
+- Lint reports 1 pre-existing warning (`'params' is defined but never used` in `app/kids/[id]/page.tsx:55`) — unrelated to this spec; 0 errors.
