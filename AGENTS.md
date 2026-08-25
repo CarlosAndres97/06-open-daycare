@@ -22,6 +22,9 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - **Context7**: Use for current Next.js/React/Tailwind documentation
 - **Supabase**: Use para interactuar con el proyecto Supabase (migrations, queries, RLS, edge functions, logs, advisors). Antes de cambios de schema, usar `list_tables`; para debug, `get_logs` + `get_advisors`. En entorno local usar Supabase CLI; en remoto usar las tools MCP directamente (los cambios vía `apply_migration` van directo al proyecto remoto).
 
+### Database migration policy
+Toda manipulación de la base de datos (DDL + DML persistente: `CREATE`/`ALTER`/`DROP` de tablas, columnas, índices, policies, triggers, functions, y seeds/INSERTs que deben quedar en el remoto) **debe** ir dentro de una migración. En remoto usar siempre `supabase_apply_migration` con un nombre `snake_case` descriptivo (`create_<tabla>`, `add_<columna>_to_<tabla>`, `enable_rls_<tabla>`, etc.) — la SQL queda registrada en el changelog de Supabase y constituye el historial. `supabase_execute_sql` queda reservado para verificación, queries de diagnóstico y SELECTs; **no** para DDL/DML persistente. Una migración por spec, alineada con su plan de implementación.
+
 ## Spec Driven Development -Skills
 - /spec Usaremos esta habilidad para crear las especificaciones.
 - /spec-impl Usaremos esta skill para hacer las implementaciones.
